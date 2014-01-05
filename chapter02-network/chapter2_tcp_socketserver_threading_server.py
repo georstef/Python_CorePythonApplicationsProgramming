@@ -1,4 +1,3 @@
-
 # for client use -> chapter2_tcp_socketserver_client
 
 from socketserver import (TCPServer, StreamRequestHandler, ThreadingMixIn)
