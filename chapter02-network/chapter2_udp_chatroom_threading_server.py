@@ -1,4 +1,3 @@
-
 # for client use -> chapter2_tcp_chatroom_threading_client
 
 from socketserver import (UDPServer, DatagramRequestHandler, ThreadingMixIn)
