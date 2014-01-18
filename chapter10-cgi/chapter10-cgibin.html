@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>cgi-bin example#1</TITLE>
+</HEAD>
+
+<BODY>
+<H3>Friends list for: <I>&ltname&gt</I></H3>
+<FORM method="GET" ACTION="/cgi-bin/chapter10-cgibin-example1.py">
+<B>Enter your Name:</B>
+<INPUT TYPE=text NAME=person VALUE="name" SIZE=15>
+<P>
+	<B>How many friends do you have?</B>
+	<INPUT TYPE=radio NAME=howmany VALUE="0" CHECKED> 0
+	<INPUT TYPE=radio NAME=howmany VALUE="10"> 10
+	<INPUT TYPE=radio NAME=howmany VALUE="25"> 25
+	<INPUT TYPE=radio NAME=howmany VALUE="50"> 50
+	<INPUT TYPE=radio NAME=howmany VALUE="100"> 100
+</P>
+<INPUT TYPE=submit>
+</FORM>
+
+</BODY>
+</HTML>
