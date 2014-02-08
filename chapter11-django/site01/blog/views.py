@@ -52,6 +52,10 @@ def archive(request):
     # in "render" we don't have to do this (that's why we always use "render")
     return render(request, 'archive.html', {'posts': posts, 'form': BlogPostForm()})
 
+def base_template(request):
+    posts = BlogPost.objects.all()[:3] # default ordering in models.BlogPost class
+    return render(request, 'index.html', {'posts': posts})
+
 '''
 # normal form action
 def create_blogpost(request):
@@ -64,6 +68,7 @@ def create_blogpost(request):
     # redirect to parent page
     return HttpResponseRedirect('/blog/')
 '''
+# model form action
 def create_blogpost(request):
     if request.method == 'POST':
         form = BlogPostForm(request.POST)

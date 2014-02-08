@@ -5,6 +5,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', blog.views.archive),# <- view function
     url(r'^create', blog.views.create_blogpost),# <- view function
+    url(r'^base', blog.views.base_template),# <- view function
 )
 
 '''
