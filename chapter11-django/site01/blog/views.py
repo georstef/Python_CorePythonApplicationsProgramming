@@ -73,7 +73,7 @@ def create_blogpost(request):
     if request.method == 'POST':
         form = BlogPostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save(commit=False) #this returns a BlogPost object
             post.timestamp = datetime.now()
             post.save()
 

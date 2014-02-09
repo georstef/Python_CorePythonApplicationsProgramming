@@ -1,7 +1,7 @@
 from django.db import models
 from django import forms
 
-# Create your models here.
+# Create your models/tables here.
 class BlogPost(models.Model):
     title = models.CharField(max_length=150)
     body = models.TextField()
