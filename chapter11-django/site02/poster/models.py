@@ -21,7 +21,7 @@ class Tweet(models.Model):
     def __str__(self):
         return self.text
 
-    # to add a default ordering and other stuff
+    # to add a default ordering and other stuff like permissions
     class Meta:
         permissions = (
             ('can_approve_or_reject_tweet', 'Can approve or reject tweets'),

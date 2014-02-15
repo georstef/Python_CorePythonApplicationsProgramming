@@ -18,7 +18,6 @@ def list_tweets(request):
     return render(request, 'list_tweets.html',
                   {'pending_tweets': pending_tweets,
                    'published_tweets': published_tweets})
-    pass
 
 class ReviewForm(forms.Form):
     new_comment = forms.CharField(max_length=300,
@@ -46,7 +45,7 @@ def review_tweet(request, tweet_id):
                 link = request.build_absolute_uri(
                     reverse(post_tweet, args=[reviewed_tweet.id]))
                 #send_rejection_email(reviewed_tweet, new_comment, link)
-                reviewed_tweet.state = 'published'
+                reviewed_tweet.state = 'rejected'
             reviewed_tweet.save()
             if new_comment:
                 c = Comment(tweet=reviewed_tweet, text=new_comment)
