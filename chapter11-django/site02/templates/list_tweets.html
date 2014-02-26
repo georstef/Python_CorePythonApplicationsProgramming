@@ -29,7 +29,8 @@ Submitted
 {% for tweet in pending_tweets %}
 <tr class="{% cycle 'oddrow' 'evenrow' %}">
 <td>
-<a href="/approve/review/{{ tweet.id }}">{{ tweet.text }}</a>
+<!-- <a href="/approve/review/{{ tweet.id }}">{{ tweet.text }}</a> -->
+<a href={% url 'approver.views.review_tweet' tweet.id %}>{{ tweet.text }}</a>
 </td>
 <td>
 {{ tweet.created_at|timesince }} ago

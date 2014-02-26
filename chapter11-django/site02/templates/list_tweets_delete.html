@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>
+all tweets
+</title>
+<style type=text/css>
+tr.evenrow {
+background: #FFFFFF;
+}
+tr.oddrow {
+background: #DDDDDD;
+}
+</style>
+</head>
+<table>
+<tr>
+<td colspan=2 align=center>
+<b>Select tweet to delete</b>
+</td>
+</tr>
+<tr>
+<td>
+Tweet text
+</td>
+<td>
+Submitted
+</td>
+</tr>
+{% for tweet in all_tweets %}
+<tr class="{% cycle 'oddrow' 'evenrow' %}">
+<td>
+<a href="/delete/del/{{ tweet.id }}">{{ tweet.text }}</a>
+</td>
+<td>
+{{ tweet.created_at|timesince }} ago
+</td>
+</tr>
+{% endfor %}
+</table>
+</html>

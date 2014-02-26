@@ -6,7 +6,8 @@ from django.db.models import Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from site02 import settings
-from poster.models import Tweet 
+from poster.models import Tweet
+from django.contrib.auth.decorators import permission_required
 
 #create the on_the_fly autoform here not in models.py
 class TweetForm(forms.ModelForm):
@@ -20,6 +21,7 @@ class TweetForm(forms.ModelForm):
             }
 
 # Create your views here.
+@permission_required('poster.can_add_tweet', login_url='/login')
 def post_tweet(request, tweet_id=None):
     tweet = None
     if tweet_id:
@@ -53,3 +55,17 @@ def thank_you(request):
     tweets_in_queue = Tweet.objects.filter(
         state='pending').aggregate(Count('id'))['id__count']
     return render(request, 'thank_you.html', {'tweets_in_queue': tweets_in_queue})
+
+def delete_tweet(request, tweet_id=None):
+    tweet = None
+    if tweet_id:
+        # get a tweet object/record based on the id
+        tweet = get_object_or_404(Tweet, id=tweet_id)
+        tweet.delete()
+    all_tweets = Tweet.objects.order_by('created_at')
+    return render(request, 'list_tweets_delete.html',
+                  {'all_tweets': all_tweets})
+
+
+
+

@@ -38,13 +38,27 @@ from blog.models import BlogPost, BlogPostForm
 
 from datetime import datetime
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger #pagination
 
 def archive(request):
-    # Query the database for all blog entries
-    # posts = BlogPost.objects.all()
+    # get the data from the table
+    # posts = BlogPost.objects.all() # query the database for all blog entries
     # posts = BlogPost.objects.all().order_by('-timestamp') # descending timestamp
     # posts = BlogPost.objects.all().order_by('-timestamp')[:3] # only 3 per page
-    posts = BlogPost.objects.all()[:3] # default ordering in models.BlogPost class
+    # posts = BlogPost.objects.all()[:3] # default ordering in models.BlogPost class
+
+    # for pagination
+    posts_list = BlogPost.objects.all()
+    paginator = Paginator(posts_list, 3) # Show 3 blogposts per page
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
     
     # use "render" over "render_to_response" (not sure why but do it)
     # update: in "render_to_response" we must add RequestContext(request) for CSRF protection
@@ -74,7 +88,8 @@ def create_blogpost(request):
         form = BlogPostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False) #this returns a BlogPost object
-            post.timestamp = datetime.now()
+            #uncomment next line if timestamp has default value
+            #post.timestamp = datetime.now()
             post.save()
 
     # redirect to parent page

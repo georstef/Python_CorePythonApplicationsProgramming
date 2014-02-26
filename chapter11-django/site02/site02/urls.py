@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^$', include('poster.urls')),
     url(r'^post/', include('poster.urls')),
+    url(r'^delete/', include('poster.urls')),
     url(r'^approve/', include('approver.urls')),
     url(r'^admin/', include(admin.site.urls)),
     # in order for the next url to work copy base.html and login.html

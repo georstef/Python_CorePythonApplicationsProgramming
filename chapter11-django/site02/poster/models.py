@@ -25,6 +25,7 @@ class Tweet(models.Model):
     class Meta:
         permissions = (
             ('can_approve_or_reject_tweet', 'Can approve or reject tweets'),
+            ('can_add_tweet', 'Can add tweets'),
             )
 
 class Comment(models.Model):
