@@ -1,4 +1,4 @@
-# exact copy of the example
+# not the exact copy of the example (some changes for python v3.0)
 # gets some stock data from "finance.yahoo.com"
 
 from time import ctime
