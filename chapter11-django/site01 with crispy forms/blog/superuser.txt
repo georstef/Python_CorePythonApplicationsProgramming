@@ -1,0 +1,3 @@
+username: georstef
+email: georstef@gmail.com
+password: 1
