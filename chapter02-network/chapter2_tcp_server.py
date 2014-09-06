@@ -25,6 +25,6 @@ if __name__=='__main__':
                 break
             #client_socket.send('[{0}] {1}'.format(ctime(), data))
             client_socket.send(bytes('[{0}] {1}'.format(ctime(), data.decode('utf-8')), 'utf-8'))
-        client_socket.close()
+            client_socket.close()
     
     server_socket.close()
